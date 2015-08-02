@@ -19,6 +19,6 @@ function getActivities(callback) {
             });
 }
 
-getActivities(function(data) {
-    console.log(data);
-});
+exports.registerRoutes = function(app) {
+    router.jsonResponse(app, "/fitness", getActivities);
+}
