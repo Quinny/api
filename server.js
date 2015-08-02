@@ -11,6 +11,6 @@ fitness.registerRoutes(app);
 var blog = require("./app/blog.js");
 blog.registerRoutes(app);
 
-http.createServer(app).listen(8000, function() {
+http.createServer(app).listen(80, function() {
     console.log("Server started on 8000");
 })

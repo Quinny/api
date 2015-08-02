@@ -1,0 +1,11 @@
+{
+    "name": "api",
+    "main": "server.js",
+    "dependencies": {
+        "memory-cache": "~0.1.4",
+        "strava-v3": "~1.8.0",
+        "github": "~0.2.4",
+        "feed-read": "~0.0.1",
+        "connect": "~3.4.0"
+    }
+}
