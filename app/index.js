@@ -16,8 +16,6 @@ function getIndex(callback) {
             cache.put(CACHE_CODE, s, VALID_FOR);
             callback(s);
         });
-        //cache.put(CACHE_CODE, s, VALID_FOR);
-        //callback(s);
     });
 }
 
