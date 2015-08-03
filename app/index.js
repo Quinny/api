@@ -10,9 +10,14 @@ function getIndex(callback) {
     if (cached)
         return callback(cached);
     fs.readFile(__dirname + "/../README.md", function(err, data) {
-        var s = marked(data.toString());
-        cache.put(CACHE_CODE, s, VALID_FOR);
-        callback(s);
+        var rendered = marked(data.toString());
+        fs.readFile(__dirname + "/../index.tpl", function (err, data) {
+            var s = data.toString().replace("$$$content$$$", rendered);
+            cache.put(CACHE_CODE, s, VALID_FOR);
+            callback(s);
+        });
+        //cache.put(CACHE_CODE, s, VALID_FOR);
+        //callback(s);
     });
 }
 
