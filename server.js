@@ -11,8 +11,8 @@ fitness.registerRoutes(app);
 var blog = require("./app/blog.js");
 blog.registerRoutes(app);
 
-var me = require("./app/me.js");
-me.registerRoutes(app);
+var facebook = require("./app/facebook.js");
+facebook.registerRoutes(app);
 
 var index = require("./app/index.js");
 index.registerRoutes(app);
