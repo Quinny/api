@@ -9,13 +9,8 @@ function getIndex(callback) {
     var cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
-    fs.readFile(__dirname + "/../README.md", function(err, data) {
-        var rendered = marked(data.toString());
-        fs.readFile(__dirname + "/../index.tpl", function (err, data) {
-            var s = data.toString().replace("$$$content$$$", rendered);
-            cache.put(CACHE_CODE, s, VALID_FOR);
-            callback(s);
-        });
+    fs.readFile(__dirname + "/../index.html", function(err, data) {
+        callback(data.toString());
     });
 }
 

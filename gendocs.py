@@ -1,5 +1,6 @@
 import os
 from jinja2 import Template
+from markdown2 import markdown
 
 class Doc:
     def __init__(self, ep, desc):
@@ -27,8 +28,11 @@ def main():
         for doc in get_docs(module):
             docs.append(doc)
     docs = sorted(docs, key=lambda x: x.endpoint)
-    t = Template(open("index.html").read())
-    out = t.render(docs = docs)
+    t = Template(open("index.tpl").read())
+    out = t.render(
+            docs = docs,
+            readme = markdown(open("README.md").read())
+        )
     print out
 
 if __name__ == "__main__":

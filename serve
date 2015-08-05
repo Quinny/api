@@ -1,3 +1,3 @@
 npm install
-python gendocs.py > index.tpl
+python gendocs.py > index.html
 node server.js $1
