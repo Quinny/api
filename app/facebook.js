@@ -25,10 +25,10 @@ function basicInfo(callback) {
             name: data["name"],
             gender: data["gender"],
             birthdate: data["birthday"],
-            currentlocation: data["location"]["name"],
+            current_location: data["location"]["name"],
             hometown: data["hometown"]["name"],
             relationship: data["relationship_status"],
-            significantother: data["significant_other"]["name"]
+            significant_other: data["significant_other"]["name"]
         });
     });
 }
