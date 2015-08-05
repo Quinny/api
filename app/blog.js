@@ -17,5 +17,7 @@ function getPosts(callback) {
 }
 
 exports.registerRoutes = function(app) {
+    // end-point: /posts
+    // The most recent posts from quinnftw.com 
     router.jsonResponse(app, "/posts", getPosts);
 }

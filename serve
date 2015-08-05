@@ -1,0 +1,3 @@
+npm install
+python gendocs.py > index.tpl
+node server.js $1

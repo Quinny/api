@@ -42,5 +42,7 @@ function getMe(callback) {
 }
 
 exports.registerRoutes = function (app) {
+    // end-point: /me
+    // Basic information about myself
     router.jsonResponse(app, "/me", getMe);
 }

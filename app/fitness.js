@@ -20,5 +20,7 @@ function getActivities(callback) {
 }
 
 exports.registerRoutes = function(app) {
+    // end-point: /fitness
+    // My latests runs recorded from strava
     router.jsonResponse(app, "/fitness", getActivities);
 }

@@ -53,7 +53,13 @@ function getFollowers(callback) {
 }
 
 exports.registerRoutes = function(app) {
+    // end-point: /github/followers
+    // People who follow me on github
     router.jsonResponse(app, "/github/followers", getFollowers);
+    // end-point: /github/following
+    // People who I follow on github
     router.jsonResponse(app, "/github/following", getFollowing);
+    // end-point: /github
+    // My recent activity on github (commits, pushes, etc.)
     router.jsonResponse(app, "/github", getInfo);
 }

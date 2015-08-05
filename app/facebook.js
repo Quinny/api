@@ -34,5 +34,7 @@ function basicInfo(callback) {
 }
 
 exports.registerRoutes = function (app) {
+    // end-point: /me
+    // Basic information about me pulled from facebook
     router.jsonResponse(app, "/me", basicInfo);
 }
