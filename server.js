@@ -2,20 +2,17 @@ var http    = require("http");
 var connect = require("connect");
 var app     = connect();
 
-var github = require("./app/github.js");
-github.registerRoutes(app);
+var endPoints = [
+    require("./app/github.js"),
+    require("./app/fitness.js"),
+    require("./app/blog.js"),
+    require("./app/facebook.js"),
+    require("./app/index.js")
+];
 
-var fitness = require("./app/fitness.js");
-fitness.registerRoutes(app);
-
-var blog = require("./app/blog.js");
-blog.registerRoutes(app);
-
-var facebook = require("./app/facebook.js");
-facebook.registerRoutes(app);
-
-var index = require("./app/index.js");
-index.registerRoutes(app);
+endPoints.forEach(function(ep) {
+    ep.registerRoutes(app);
+});
 
 http.createServer(app).listen(process.argv[2], function() {
     console.log("Server started on " + process.argv[2]);

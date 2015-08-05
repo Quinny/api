@@ -3,7 +3,6 @@ var router    = require("./router.js");
 var keys      = require("./keys.js");
 var cache     = require("memory-cache");
 var VALID_FOR = 86400000;
-
 facebook.setAccessToken(keys.facebook_access_token);
 
 function getAllInfo(callback) {
@@ -31,7 +30,6 @@ function basicInfo(callback) {
             relationship: data["relationship_status"],
             significantother: data["significant_other"]["name"]
         });
-        //callback(data);
     });
 }
 
