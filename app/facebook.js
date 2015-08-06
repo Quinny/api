@@ -21,7 +21,8 @@ function getAllInfo(callback) {
                     'work',
                     'birthday',
                     'gender',
-                    'hometown'
+                    'hometown',
+                    'education'
                 ]
     },
     function (data) {
@@ -60,10 +61,28 @@ function workInfo(callback) {
     });
 }
 
+function schoolInfo(callback) {
+    getAllInfo(function (data) {
+        callback(data.education.map(function (e) {
+            ret = {};
+            ret['level'] = e['type'];
+            if ('concentration' in e)
+                ret['degree'] = e['concentration'][0]['name'];
+            ret['class'] = e['year']['name'];
+            ret['school'] = e['school']['name'];
+            return ret;
+        }));
+    });
+}
+
 exports.registerRoutes = function (app) {
     // end-point: /me/work
     // Employment history
     router.jsonResponse(app, "/me/work", workInfo);
+
+    // end-point: /me/school
+    // Education history
+    router.jsonResponse(app, "/me/school", schoolInfo);
 
     // end-point: /me
     // Basic information about me pulled from facebook
