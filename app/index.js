@@ -1,5 +1,4 @@
 var router    = require("./router.js");
-var marked    = require("marked");
 var cache     = require("memory-cache");
 var fs        = require("fs");
 var VALID_FOR = 86400000; // 1 day

@@ -2,8 +2,14 @@ var facebook  = require("fb");
 var router    = require("./router.js");
 var keys      = require("./keys.js");
 var cache     = require("memory-cache");
+var alerter   = require("./alerter.js");
 var VALID_FOR = 86400000;
 facebook.setAccessToken(keys.facebook_access_token);
+var errorResponse = {
+    error: "500",
+    message: "Error getting facebook data!  Monkeys are being dispatched"
+};
+
 
 function getAllInfo(callback) {
     var CACHE_CODE = "facebook-getAllInfo";
@@ -26,8 +32,13 @@ function getAllInfo(callback) {
                 ]
     },
     function (data) {
-        if (!data || data.error)
-            return callback(data.error);
+        if (!data || data.error) {
+            alerter.send("Facebook API Error!",
+                         "The error is: " + JSON.stringify(data.error) + "\n" +
+                         "The problem is most likely that the access token " +
+                         "expired");
+            return callback(data);
+        }
         cache.put(CACHE_CODE, data, VALID_FOR);
         callback(data);
     });
@@ -35,6 +46,8 @@ function getAllInfo(callback) {
 
 function basicInfo(callback) {
     getAllInfo(function (data) {
+        if (data.error)
+            return callback(errorResponse);
         callback({
             name: data["name"],
             gender: data["gender"],
@@ -49,6 +62,8 @@ function basicInfo(callback) {
 
 function workInfo(callback) {
     getAllInfo(function (data) {
+        if (data.error)
+            return callback(errorResponse);
         callback(data.work.map(function (w) {
             return {
                 position: w['position']['name'],
@@ -63,6 +78,8 @@ function workInfo(callback) {
 
 function schoolInfo(callback) {
     getAllInfo(function (data) {
+        if (data.error)
+            return callback(errorResponse);
         callback(data.education.map(function (e) {
             ret = {};
             ret['level'] = e['type'];
