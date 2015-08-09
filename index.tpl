@@ -12,6 +12,7 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2">
             {{ readme }}
             <h2>End Points</h2>
+            <hr />
             {% for doc in docs %}
             <code><a href="{{doc.endpoint}}">{{doc.endpoint}}</a></code> 
             - {{ doc.desc }}

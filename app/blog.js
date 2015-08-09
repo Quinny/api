@@ -1,11 +1,11 @@
-var feed      = require("feed-read");
-var cache     = require("memory-cache");
-var router    = require("./router.js");
-var VALID_FOR = 86400000;
+const feed      = require("feed-read");
+const cache     = require("memory-cache");
+const router    = require("./router.js");
+const VALID_FOR = 86400000;
 
 function getPosts(callback) {
-    var CACHE_CODE = "blog-getPosts";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "blog-getPosts";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
     feed("http://quinnftw.com/feed.xml", function(err, data) {

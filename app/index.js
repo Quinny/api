@@ -1,11 +1,11 @@
-var router    = require("./router.js");
-var cache     = require("memory-cache");
-var fs        = require("fs");
-var VALID_FOR = 86400000; // 1 day
+const router    = require("./router.js");
+const cache     = require("memory-cache");
+const fs        = require("fs");
+const VALID_FOR = 86400000; // 1 day
 
 function getIndex(callback) {
-    var CACHE_CODE = "index-getIndex";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "index-getIndex";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
     fs.readFile(__dirname + "/../index.html", function(err, data) {

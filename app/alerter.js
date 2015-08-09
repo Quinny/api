@@ -1,7 +1,7 @@
-var nodemailer = require("nodemailer");
-var keys = require("./keys.js");
+const nodemailer = require("nodemailer");
+const keys       = require("./keys.js");
 
-var transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: 'thequinnftw@gmail.com',
@@ -10,7 +10,7 @@ var transporter = nodemailer.createTransport({
 });
 
 exports.send = function (sub, body) {
-    var mailOptions = {
+    const mailOptions = {
         from: 'API Alerter <alerts@api.quinnftw.com>',
         to: 'thequinnftw@gmail.com',
         subject: sub,

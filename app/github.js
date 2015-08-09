@@ -1,9 +1,9 @@
-var github    = require("github");
-var cache     = require("memory-cache");
-var router    = require("./router.js");
-var VALID_FOR = 5 * 60000; // Cache is valid for 5 minutes
+const github    = require("github");
+const cache     = require("memory-cache");
+const router    = require("./router.js");
+const VALID_FOR = 5 * 60000; // Cache is valid for 5 minutes
 
-var ghapi = new github({
+const ghapi = new github({
     version: "3.0.0",
     headers: {
         "user-agent": "quinn-perfetto-personal-api"
@@ -11,8 +11,8 @@ var ghapi = new github({
 });
 
 function getInfo(callback) {
-    var CACHE_CODE = "github-getInfo";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "github-getInfo";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
 
@@ -25,8 +25,8 @@ function getInfo(callback) {
 }
 
 function getFollowing(callback) {
-    var CACHE_CODE = "github-getFollowing";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "github-getFollowing";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
 
@@ -39,8 +39,8 @@ function getFollowing(callback) {
 }
 
 function getFollowers(callback) {
-    var CACHE_CODE = "github-getFollowers";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "github-getFollowers";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
 

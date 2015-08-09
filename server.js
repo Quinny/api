@@ -1,8 +1,8 @@
-var http    = require("http");
-var connect = require("connect");
-var app     = connect();
+const http    = require("http");
+const connect = require("connect");
+const app     = connect();
 
-var endPoints = [
+const endPoints = [
     require("./app/github.js"),
     require("./app/fitness.js"),
     require("./app/blog.js"),

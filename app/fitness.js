@@ -1,22 +1,25 @@
-var keys      = require("./keys.js");
-var cache     = require("memory-cache");
-var strava    = require("strava-v3");
-var router    = require("./router.js");
-var VALID_FOR = 86400000; // 1 day
+const keys      = require("./keys.js");
+const cache     = require("memory-cache");
+const strava    = require("strava-v3");
+const router    = require("./router.js");
+const VALID_FOR = 86400000; // 1 day
 
 function getActivities(callback) {
-    var CACHE_CODE = "strava-getActivities";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "strava-getActivities";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
 
-    strava.athlete.listActivities({ "access_token": keys.strava_access_token, },
-            function (err, data) {
-                if (err)
-                    callback(err);
-                cache.put(CACHE_CODE, data, VALID_FOR);
-                callback(data);
-            });
+    strava.athlete.listActivities(
+    {
+        "access_token": keys.strava_access_token,
+    },
+    function (err, data) {
+        if (err)
+            callback(err);
+        cache.put(CACHE_CODE, data, VALID_FOR);
+        callback(data);
+    });
 }
 
 exports.registerRoutes = function(app) {

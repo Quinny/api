@@ -1,19 +1,22 @@
-var facebook  = require("fb");
-var router    = require("./router.js");
-var keys      = require("./keys.js");
-var cache     = require("memory-cache");
-var alerter   = require("./alerter.js");
-var VALID_FOR = 86400000;
+const facebook  = require("fb");
+const router    = require("./router.js");
+const keys      = require("./keys.js");
+const cache     = require("memory-cache");
+const alerter   = require("./alerter.js");
+const VALID_FOR = 86400000;
 facebook.setAccessToken(keys.facebook_access_token);
-var errorResponse = {
+
+facebook = {};
+
+const errorResponse = {
     error: "500",
     message: "Error getting facebook data!  Monkeys are being dispatched"
 };
 
 
 function getAllInfo(callback) {
-    var CACHE_CODE = "facebook-getAllInfo";
-    var cached = cache.get(CACHE_CODE);
+    const CACHE_CODE = "facebook-getAllInfo";
+    const cached = cache.get(CACHE_CODE);
     if (cached)
         return callback(cached);
 
