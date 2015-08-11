@@ -5,9 +5,6 @@ const cache     = require("memory-cache");
 const alerter   = require("./alerter.js");
 const VALID_FOR = 86400000;
 facebook.setAccessToken(keys.facebook_access_token);
-
-facebook = {};
-
 const errorResponse = {
     error: "500",
     message: "Error getting facebook data!  Monkeys are being dispatched"
