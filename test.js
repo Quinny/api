@@ -1,5 +1,6 @@
 const assert = require("assert");
 const http   = require("http");
+const fs     = require("fs");
 const host   = "http://localhost:8000";
 
 function getJSON(url, callback) {
@@ -37,6 +38,11 @@ function testObjectResponse(endpoint, fields) {
         }
     });
 }
+
+fs.readFile("index.tpl", function (err, data) {
+    assert(!err, "Error opening template file");
+    assert(data.toString().length > 10, "Template file empty");
+});
 
 testArrayResponse("/fitness", ["id"]);
 testArrayResponse("/github", ["id", "type"]);
