@@ -28,9 +28,7 @@ def main():
         for doc in get_docs(module):
             docs.append(doc)
     docs = sorted(docs, key=lambda x: x.endpoint)
-    f = open("index.tpl")
-    t = Template(f.read())
-    f.close()
+    t = Template(open("index.tpl").read())
     out = t.render(
             docs = docs,
             readme = markdown(open("README.md").read())

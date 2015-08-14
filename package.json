@@ -1,5 +1,9 @@
 {
-    "name": "api",
+    "name": "quinn-perfetto-api",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/quinny/api"
+    },
     "main": "server.js",
     "dependencies": {
         "memory-cache": "~0.1.4",
